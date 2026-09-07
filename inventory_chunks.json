@@ -1,0 +1,197 @@
+[
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-2",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0818. Production/location: D17. Vendor/source: D1. Product: RM_CHILLI POWDER OMEGA_5390380630955. Barcode: 30955. Packaging size: 20 kg. Quantity received: 8 pcs. Total quantity received: 160 kg. Net stock quantity: 160 kg. Transaction document type: TRN. Invoice: DD09883.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 2,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0818",
+      "product": "RM_CHILLI POWDER OMEGA_5390380630955",
+      "barcode": 30955,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-3",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0818. Production/location: D17. Vendor/source: D1. Product: PM_350CC SUNPET 5390380650007. Barcode: 50007. Packaging size: 198 kg. Quantity received: 20 pcs. Total quantity received: 3960 kg. Net stock quantity: 3960 kg. Transaction document type: TRN. Invoice: DD09883.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 3,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0818",
+      "product": "PM_350CC SUNPET 5390380650007",
+      "barcode": 50007,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-4",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0818. Production/location: D17. Vendor/source: D1. Product: RM_CORN FLOUR_6359700008576. Barcode: 8576. Packaging size: 25 kg. Quantity received: 2 pcs. Total quantity received: 50 kg. Net stock quantity: 50 kg. Transaction document type: TRN. Invoice: DD09883.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 4,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0818",
+      "product": "RM_CORN FLOUR_6359700008576",
+      "barcode": 8576,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-5",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0818. Production/location: D17. Vendor/source: D1. Product: PM_WADS 63 MM  5390380651295. Barcode: 51295. Packaging size: 500 kg. Quantity received: 12 pcs. Total quantity received: 6000 kg. Net stock quantity: 6000 kg. Transaction document type: TRN. Invoice: DD09883.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 5,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0818",
+      "product": "PM_WADS 63 MM  5390380651295",
+      "barcode": 51295,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-6",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0819. Production/location: TEAM 2. Vendor/source: TEAM 2. Product: AL KHALEEJ SUGA 50KGS BAG(UAE ORIGIN). Barcode: 28156. Packaging size: 50 kg. Quantity received: 60 pcs. Total quantity received: 3000 kg. Net stock quantity: 3000 kg. Transaction document type: TRN. Invoice: DD09884.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 6,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0819",
+      "product": "AL KHALEEJ SUGA 50KGS BAG(UAE ORIGIN)",
+      "barcode": 28156,
+      "vendor": "TEAM 2"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-7",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_CORIANDER POWDER_5390360621850. Barcode: 21850. Packaging size: 20 kg. Quantity received: 106 pcs. Total quantity received: 2120 kg. Net stock quantity: 2120 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 7,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_CORIANDER POWDER_5390360621850",
+      "barcode": 21850,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-8",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_CUMIN POWDER_5390360622017. Barcode: 22017. Packaging size: 20 kg. Quantity received: 68 pcs. Total quantity received: 1360 kg. Net stock quantity: 1360 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 8,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_CUMIN POWDER_5390360622017",
+      "barcode": 22017,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-9",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_TURMERIC POWDER NOA_6359700002017. Barcode: 2017. Packaging size: 20 kg. Quantity received: 98 pcs. Total quantity received: 1960 kg. Net stock quantity: 1960 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 9,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_TURMERIC POWDER NOA_6359700002017",
+      "barcode": 2017,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-10",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_BLACK PEPPER POWDER_5390360620662. Barcode: 20662. Packaging size: 20 kg. Quantity received: 74 pcs. Total quantity received: 1480 kg. Net stock quantity: 1480 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 10,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_BLACK PEPPER POWDER_5390360620662",
+      "barcode": 20662,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-11",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_GRIND_GINGER POWDER_5390360621163. Barcode: 21163. Packaging size: 15 kg. Quantity received: 43 pcs. Total quantity received: 645 kg. Net stock quantity: 645 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 11,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_GRIND_GINGER POWDER_5390360621163",
+      "barcode": 21163,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-12",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_CINNAMON POWDER_6359700008484. Barcode: 8484. Packaging size: 20 kg. Quantity received: 20 pcs. Total quantity received: 400 kg. Net stock quantity: 400 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 12,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_CINNAMON POWDER_6359700008484",
+      "barcode": 8484,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-13",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_BURGUL BROWN SOFT  5390360627784. Barcode: 27784. Packaging size: 15 kg. Quantity received: 14 pcs. Total quantity received: 210 kg. Net stock quantity: 210 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 13,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_BURGUL BROWN SOFT  5390360627784",
+      "barcode": 27784,
+      "vendor": "D1"
+    }
+  },
+  {
+    "chunk_id": "Inventory_transactions-Sheet1-14",
+    "text": "Inventory transaction on 2026-05-01. Inward number: D1IN0820. Production/location: D17. Vendor/source: D1. Product: RM_FENNEL SEED_5390360622284. Barcode: 22284. Packaging size: 10 kg. Quantity received: 6 pcs. Total quantity received: 60 kg. Net stock quantity: 60 kg. Transaction document type: TRN. Invoice: DD09886.",
+    "metadata": {
+      "source_file": "Inventory_transactions.xlsx",
+      "report_type": "inventory",
+      "sheet": "Sheet1",
+      "row_number": 14,
+      "date": "2026-05-01",
+      "transaction_number": "D1IN0820",
+      "product": "RM_FENNEL SEED_5390360622284",
+      "barcode": 22284,
+      "vendor": "D1"
+    }
+  }
+]
