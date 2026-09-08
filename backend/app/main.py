@@ -3,9 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes.reports import router as reports_router
 
+from app.database import engine
+from app.models import Base
+
 
 app = FastAPI()
 
+Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
     CORSMiddleware,
