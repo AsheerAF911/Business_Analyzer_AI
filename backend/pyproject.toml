@@ -10,3 +10,8 @@ dependencies = [
     "python-multipart>=0.0.32",
     "sqlalchemy>=2.0.52",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
