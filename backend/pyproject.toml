@@ -4,10 +4,13 @@ version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.141.1",
+    "openai>=3.10.0",
     "openpyxl>=3.1.5",
     "psycopg[binary]>=3.3.5",
     "python-dotenv>=1.2.3",
     "python-multipart>=0.0.32",
+    "qdrant-client>=1.19.0",
+    "sentence-transformers>=6.0.1",
     "sqlalchemy>=2.0.52",
 ]
 

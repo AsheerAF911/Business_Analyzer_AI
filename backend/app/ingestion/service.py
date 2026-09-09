@@ -34,8 +34,12 @@ class UnsupportedFileTypeError(Exception):
 
 class IngestionService:
 
-    def __init__(self, db: Session):
-        self.db = db
+    def __init__(
+        self,
+        *,
+        rag_indexing_service: RAGIndexingService,
+    ):
+        self.rag_indexing_service = rag_indexing_service
 
     def get_parser(
         self,
@@ -107,6 +111,10 @@ class IngestionService:
             # Future stages will consume `records`
             # for structured loading and/or RAG
             # document/chunk generation.
+            rag_result = self.rag_indexing_service.index_records(
+                records=records,
+                report_type=report.report_type.value,
+            )
 
             job.status = (
                 ProcessingJobStatus.COMPLETED

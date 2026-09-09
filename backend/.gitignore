@@ -1,1 +1,12 @@
 *.env
+# Local ML/model caches if explicitly configured inside project
+.cache/
+model_cache/
+
+# Qdrant local storage
+qdrant_storage/
+qdrant_data/
+
+# Local ML/model caches
+.cache/
+model_cache/
