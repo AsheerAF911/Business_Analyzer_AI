@@ -2,12 +2,13 @@ from .base import (
     LLMService,
     LLMServiceError,
 )
-from .openai_service import (
-    OpenAILLMService,
+from .openrouter_service import (
+    OpenRouterLLMService,
 )
+
 
 __all__ = [
     "LLMService",
     "LLMServiceError",
-    "OpenAILLMService",
+    "OpenRouterLLMService",
 ]

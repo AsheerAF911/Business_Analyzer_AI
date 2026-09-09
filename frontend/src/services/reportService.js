@@ -1,4 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost:8000";
 
 export async function uploadReport(file, reportType) {
   const formData = new FormData();
@@ -14,17 +16,11 @@ export async function uploadReport(file, reportType) {
     }
   );
 
-  let data;
-
-  try {
-    data = await response.json();
-  } catch {
-    data = null;
-  }
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(
-      data?.detail || "Failed to upload report."
+      data.detail || "Report upload failed."
     );
   }
 

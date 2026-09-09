@@ -15,6 +15,13 @@ from app.rag_ingestion.vector_store import (
     QdrantService,
 )
 
+from app.llm import (
+    LLMService,
+    OpenRouterLLMService,
+)
+
+from app.answering import AnswerService
+
 
 @lru_cache
 def get_embedding_service() -> EmbeddingService:
@@ -45,31 +52,37 @@ def get_retrieval_service() -> RetrievalService:
         vector_store=get_qdrant_service(),
     )
 
-from app.llm import (
-    LLMService,
-    OpenAILLMService,
-)
 
 
 @lru_cache
 def get_llm_service() -> LLMService:
     provider = os.getenv(
         "LLM_PROVIDER",
-        "openai",
-    ).lower()
+        "openrouter",
+    ).strip().lower()
 
-    if provider == "openai":
-        return OpenAILLMService(
+    if provider == "openrouter":
+        return OpenRouterLLMService(
             api_key=os.getenv(
-                "OPENAI_API_KEY",
+                "OPENROUTER_API_KEY",
                 "",
             ),
             model=os.getenv(
-                "OPENAI_MODEL",
-                "",
+                "OPENROUTER_MODEL",
+                "openrouter/free",
             ),
         )
 
     raise RuntimeError(
         f"Unsupported LLM provider: {provider}"
+    )
+
+
+
+
+@lru_cache
+def get_answer_service() -> AnswerService:
+    return AnswerService(
+        retrieval_service=get_retrieval_service(),
+        llm_service=get_llm_service(),
     )

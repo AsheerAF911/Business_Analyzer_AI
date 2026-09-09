@@ -19,6 +19,8 @@ from .parsers import (
     BaseParser,
 )
 
+from app.rag_ingestion.indexing import RAGIndexingService
+
 
 PARSER_REGISTRY: dict[str, BaseParser] = {
     ".xlsx": ExcelParser(),
@@ -36,9 +38,11 @@ class IngestionService:
 
     def __init__(
         self,
+        db: Session,
         *,
         rag_indexing_service: RAGIndexingService,
     ):
+        self.db = db
         self.rag_indexing_service = rag_indexing_service
 
     def get_parser(

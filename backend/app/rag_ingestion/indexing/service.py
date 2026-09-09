@@ -72,6 +72,8 @@ class RAGIndexingService:
                 "Embedding count does not match chunk count."
             )
 
+        self.vector_store.reset_collection()
+
         self.vector_store.upsert_chunks(
             chunks=chunks,
             embeddings=embeddings,

@@ -95,6 +95,16 @@ class QdrantService:
                 "Expected COSINE."
             )
 
+    def reset_collection(self) -> None:
+        if self.client.collection_exists(
+            self.collection_name
+        ):
+            self.client.delete_collection(
+                collection_name=self.collection_name
+            )
+
+        self.ensure_collection()
+
     def upsert_chunks(
         self,
         *,

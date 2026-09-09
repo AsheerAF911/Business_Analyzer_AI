@@ -1,5 +1,17 @@
 import { useState } from "react";
 import { uploadReport } from "./services/reportService";
+import {
+  askQuestion,
+} from "./services/askService";
+
+const COMMON_QUESTIONS = [
+  "Which products were received under D1IN0818?",
+  "Tell me about D1IN0820.",
+  "Which transaction contains chilli powder?",
+  "What was received from TEAM 2?",
+  "What was the total quantity received?",
+  "Which transaction received the highest quantity?",
+];
 
 const REPORT_TYPES = [
   "Sales",
@@ -13,198 +25,330 @@ const REPORT_TYPES = [
 ];
 
 function App() {
-  const [file, setFile] = useState(null);
-  const [reportType, setReportType] = useState("Sales");
+  const [file, setFile] =
+    useState(null);
 
-  const [uploading, setUploading] = useState(false);
-  const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
+  const [reportType, setReportType] =
+    useState("Inventory");
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files?.[0] || null;
+  const [uploading, setUploading] =
+    useState(false);
 
-    setFile(selectedFile);
-    setSuccess(null);
-    setError(null);
-  };
+  const [uploadMessage, setUploadMessage] =
+    useState("");
 
-  const handleSubmit = async (event) => {
+  const [uploadError, setUploadError] =
+    useState("");
+
+  const [question, setQuestion] =
+    useState("");
+
+  const [asking, setAsking] =
+    useState(false);
+
+  const [answer, setAnswer] =
+    useState("");
+
+  const [sources, setSources] =
+    useState([]);
+
+  const [askError, setAskError] =
+    useState("");
+
+
+  async function handleUpload(event) {
     event.preventDefault();
 
-    setSuccess(null);
-    setError(null);
-
     if (!file) {
-      setError("Please select a report file.");
+      setUploadError(
+        "Please select a report."
+      );
       return;
     }
 
+    setUploading(true);
+    setUploadError("");
+    setUploadMessage("");
+
     try {
-      setUploading(true);
+      const result =
+        await uploadReport(
+          file,
+          reportType
+        );
 
-      const result = await uploadReport(
-        file,
-        reportType
+      setUploadMessage(
+        `Report processed successfully. ${
+          result.chunks_indexed
+            ? `${result.chunks_indexed} chunks indexed.`
+            : ""
+        }`
       );
-
-      setSuccess(result);
-
-      setFile(null);
-      event.target.reset();
-
-    } catch (err) {
-      setError(
-        err.message || "Something went wrong while uploading."
+    } catch (error) {
+      setUploadError(
+        error.message ||
+          "Report processing failed."
       );
     } finally {
       setUploading(false);
     }
-  };
+  }
+
+
+  async function submitQuestion(
+    value = question
+  ) {
+    const cleanQuestion =
+      value.trim();
+
+    if (!cleanQuestion) {
+      setAskError(
+        "Please enter a question."
+      );
+      return;
+    }
+
+    setQuestion(cleanQuestion);
+    setAsking(true);
+    setAskError("");
+    setAnswer("");
+    setSources([]);
+
+    try {
+      const result =
+        await askQuestion(
+          cleanQuestion
+        );
+
+      setAnswer(result.answer);
+      setSources(
+        result.sources || []
+      );
+    } catch (error) {
+      setAskError(
+        error.message ||
+          "Unable to contact the AI service."
+      );
+    } finally {
+      setAsking(false);
+    }
+  }
+
 
   return (
-    <div style={styles.page}>
-      <div style={styles.card}>
-        <h1>Business AI</h1>
-
-        <p style={styles.subtitle}>
-          Upload a business report to begin processing.
+    <main className="app-shell">
+      <header className="hero">
+        <p className="eyebrow">
+          Business Report Intelligence
         </p>
 
-        <form onSubmit={handleSubmit}>
-          <div style={styles.field}>
-            <label htmlFor="report-file">
-              Report File
-            </label>
+        <h1>
+          AI Business Investigator
+        </h1>
 
-            <input
-              id="report-file"
-              type="file"
-              accept=".pdf,.xlsx,.xls,.csv"
-              onChange={handleFileChange}
-              disabled={uploading}
-            />
+        <p className="hero-copy">
+          Upload a business report,
+          index its evidence, and ask
+          questions about the data.
+        </p>
+      </header>
 
-            <small>
-              Supported formats: PDF, XLSX, XLS, CSV
-            </small>
-          </div>
+      <section className="panel">
+        <div className="section-heading">
+          <h2>Upload report</h2>
+          <p>
+            Process and index a report
+            before asking questions.
+          </p>
+        </div>
 
-          <div style={styles.field}>
-            <label htmlFor="report-type">
-              Report Type
-            </label>
+        <form
+          className="upload-form"
+          onSubmit={handleUpload}
+        >
+          <select
+            value={reportType}
+            onChange={(event) =>
+              setReportType(
+                event.target.value
+              )
+            }
+          >
+            <option value="Inventory">
+              Inventory
+            </option>
+          </select>
 
-            <select
-              id="report-type"
-              value={reportType}
-              onChange={(event) =>
-                setReportType(event.target.value)
-              }
-              disabled={uploading}
-            >
-              {REPORT_TYPES.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
+          <input
+            type="file"
+            accept=".xlsx,.xls,.csv,.pdf"
+            onChange={(event) =>
+              setFile(
+                event.target.files?.[0] ||
+                  null
+              )
+            }
+          />
 
           <button
             type="submit"
             disabled={uploading}
           >
-            {uploading ? "Uploading..." : "Upload Report"}
+            {uploading
+              ? "Processing..."
+              : "Upload & Process"}
           </button>
         </form>
 
-        {success && (
-          <div style={styles.success}>
-            <strong>Report uploaded successfully.</strong>
-
-            <p>
-              Report ID: <strong>{success.id}</strong>
-            </p>
-
-            <p>
-              Filename: {success.original_filename}
-            </p>
-
-            <p>
-              Type: {success.report_type}
-            </p>
-
-            <p>
-              Status: {success.status}
-            </p>
-          </div>
+        {uploadMessage && (
+          <p className="success-message">
+            {uploadMessage}
+          </p>
         )}
 
-        {error && (
-          <div style={styles.error}>
-            {error}
-          </div>
+        {uploadError && (
+          <p className="error-message">
+            {uploadError}
+          </p>
         )}
-      </div>
-    </div>
+      </section>
+
+      <section className="panel">
+        <div className="section-heading">
+          <h2>Common questions</h2>
+          <p>
+            Try a question against the
+            indexed report.
+          </p>
+        </div>
+
+        <div className="question-grid">
+          {COMMON_QUESTIONS.map(
+            (item) => (
+              <button
+                key={item}
+                type="button"
+                className="question-card"
+                disabled={asking}
+                onClick={() =>
+                  submitQuestion(item)
+                }
+              >
+                {item}
+              </button>
+            )
+          )}
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="section-heading">
+          <h2>Ask AI</h2>
+        </div>
+
+        <textarea
+          rows="4"
+          placeholder="Ask a question about the uploaded report..."
+          value={question}
+          onChange={(event) =>
+            setQuestion(
+              event.target.value
+            )
+          }
+        />
+
+        <button
+          type="button"
+          className="primary-button"
+          disabled={asking}
+          onClick={() =>
+            submitQuestion()
+          }
+        >
+          {asking
+            ? "Investigating..."
+            : "Ask AI"}
+        </button>
+
+        {askError && (
+          <p className="error-message">
+            {askError}
+          </p>
+        )}
+      </section>
+
+      {answer && (
+        <section className="panel answer-panel">
+          <div className="section-heading">
+            <h2>Answer</h2>
+          </div>
+
+          <div className="answer-text">
+            {answer}
+          </div>
+
+          {sources.length > 0 && (
+            <div className="sources">
+              <h3>Evidence</h3>
+
+              {sources.map(
+                (source, index) => (
+                  <div
+                    className="source-card"
+                    key={
+                      source.chunk_id ||
+                      index
+                    }
+                  >
+                    <strong>
+                      Source {index + 1}
+                    </strong>
+
+                    <span>
+                      {source.source_file ||
+                        "Unknown file"}
+                    </span>
+
+                    {source.sheet && (
+                      <span>
+                        Sheet:{" "}
+                        {source.sheet}
+                      </span>
+                    )}
+
+                    {source.source_rows && (
+                      <span>
+                        Rows:{" "}
+                        {source.source_rows.join(
+                          ", "
+                        )}
+                      </span>
+                    )}
+
+                    {source.transaction_number && (
+                      <span>
+                        Transaction:{" "}
+                        {
+                          source.transaction_number
+                        }
+                      </span>
+                    )}
+
+                    <span>
+                      Retrieval score:{" "}
+                      {source.score.toFixed(
+                        4
+                      )}
+                    </span>
+                  </div>
+                )
+              )}
+            </div>
+          )}
+        </section>
+      )}
+    </main>
   );
 }
-
-const styles = {
-  page: {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f5f6f8",
-    padding: "20px",
-  },
-
-  card: {
-    width: "100%",
-    maxWidth: "500px",
-    background: "#ffffff",
-    padding: "32px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-  },
-
-  subtitle: {
-    color: "#666",
-    marginBottom: "28px",
-  },
-
-  field: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-    marginBottom: "20px",
-  },
-
-  label: {
-    fontWeight: "600",
-  },
-
-  button: {
-    width: "100%",
-  },
-
-  success: {
-    marginTop: "24px",
-    padding: "16px",
-    borderRadius: "8px",
-    background: "#eaf7ee",
-    border: "1px solid #b7dfc3",
-  },
-
-  error: {
-    marginTop: "24px",
-    padding: "16px",
-    borderRadius: "8px",
-    background: "#fdecec",
-    border: "1px solid #f1b5b5",
-    color: "#a00000",
-  },
-};
 
 export default App;

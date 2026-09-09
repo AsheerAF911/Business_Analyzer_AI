@@ -19,6 +19,9 @@ from app.ingestion import (
     UnsupportedFileTypeError,
 )
 
+from app.dependencies import get_rag_indexing_service
+import traceback
+
 
 router = APIRouter(
     prefix="/api/reports",
@@ -140,7 +143,10 @@ def upload_report(
     # 3. Create Processing Job
     # --------------------------------------------------
 
-    ingestion_service = IngestionService(db)
+    ingestion_service = IngestionService(
+        db,
+        rag_indexing_service=get_rag_indexing_service(),
+    )
 
     try:
         job = ingestion_service.create_job(
@@ -179,11 +185,22 @@ def upload_report(
             detail="Unsupported file type.",
         )
 
-    except Exception:
+    # except Exception:
+    #     raise HTTPException(
+    #         status_code=(
+    #             status.HTTP_500_INTERNAL_SERVER_ERROR
+    #         ),
+    #         detail="Report processing failed.",
+    #     )
+
+    except Exception as exc:
+        print(
+            f"REPORT PROCESSING ERROR: "
+            f"{type(exc).__name__}: {exc}"
+        )
+        traceback.print_exc()
         raise HTTPException(
-            status_code=(
-                status.HTTP_500_INTERNAL_SERVER_ERROR
-            ),
+            status_code=500,
             detail="Report processing failed.",
         )
 
