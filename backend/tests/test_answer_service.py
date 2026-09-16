@@ -4,7 +4,10 @@ from app.answering import AnswerService
 from app.rag_ingestion.retrieval import (
     RetrievalResult,
 )
-
+from app.llm import (
+    LLMEvidence,
+    LLMResponse,
+)
 
 class FakeRetrievalService:
     def __init__(self, results):
@@ -26,16 +29,35 @@ class FakeRetrievalService:
 class FakeLLMService:
     def __init__(
         self,
-        response="Test answer",
+        response: str = "Generated answer",
     ):
         self.response = response
-        self.last_prompt = None
+
+        self.question = None
+        self.evidence = None
+        self.system_instructions = None
+
         self.call_count = 0
 
-    def generate(self, prompt):
+    def generate_answer(
+        self,
+        *,
+        question: str,
+        evidence: list[LLMEvidence],
+        system_instructions: str | None = None,
+    ) -> LLMResponse:
+
         self.call_count += 1
-        self.last_prompt = prompt
-        return self.response
+
+        self.question = question
+        self.evidence = evidence
+        self.system_instructions = (
+            system_instructions
+        )
+
+        return LLMResponse(
+            text=self.response
+        )
 
 
 @pytest.fixture
@@ -104,12 +126,38 @@ def test_llm_receives_evidence(
         llm_service=llm,
     )
 
-    service.answer("D1IN0818")
+    service.answer(
+        "D1IN0818"
+    )
 
-    assert llm.call_count == 1
-    assert "D1IN0818" in llm.last_prompt
-    assert "RM_CHILLI POWDER" in llm.last_prompt
-    assert "Inventory_transactions.xlsx" in llm.last_prompt
+    assert llm.question == "D1IN0818"
+
+    assert llm.evidence is not None
+    assert len(llm.evidence) == 1
+
+    received = llm.evidence[0]
+
+    assert (
+        received.chunk_id
+        == (
+            "Inventory_transactions-"
+            "Sheet1-transaction-D1IN0818"
+        )
+    )
+
+    assert (
+        received.metadata[
+            "transaction_number"
+        ]
+        == "D1IN0818"
+    )
+
+    assert (
+        received.metadata[
+            "source_rows"
+        ]
+        == [2, 3, 4, 5]
+    )
 
 
 def test_answer_preserves_sources(
@@ -189,3 +237,34 @@ def test_llm_can_represent_insufficient_evidence(
     )
 
     assert result.answer == response
+
+
+def test_llm_receives_system_instructions(
+    evidence,
+):
+    llm = FakeLLMService()
+
+    service = AnswerService(
+        retrieval_service=(
+            FakeRetrievalService(
+                evidence
+            )
+        ),
+        llm_service=llm,
+    )
+
+    service.answer(
+        "D1IN0818"
+    )
+
+    assert llm.system_instructions is not None
+
+    assert (
+        "Answer only from the supplied evidence."
+        in llm.system_instructions
+    )
+
+    assert (
+        "Do not invent facts."
+        in llm.system_instructions
+    )

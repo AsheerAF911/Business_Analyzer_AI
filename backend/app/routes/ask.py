@@ -11,7 +11,7 @@ from app.answering import AnswerService
 from app.dependencies import (
     get_answer_service,
 )
-from app.llm import LLMServiceError
+from app.llm import LLMProviderError
 
 
 router = APIRouter(
@@ -65,14 +65,11 @@ def ask_question(
             question
         )
 
-    except LLMServiceError:
+    except LLMProviderError as exc:
         raise HTTPException(
             status_code=503,
-            detail=(
-                "The AI service is currently "
-                "unavailable."
-            ),
-        )
+            detail=str(exc),
+        ) from exc
 
     except ConnectionError:
         raise HTTPException(

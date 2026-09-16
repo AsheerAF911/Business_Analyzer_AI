@@ -2,8 +2,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from app.ingestion.parsers.base import ParsedRecord
-from app.rag_ingestion import DocumentBuilder
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.ingestion.parsers.base import ParsedRecord
+from app.rag_ingestion.document_builder import (
+    DocumentBuilder,
+)
 from app.rag_ingestion.chunking import (
     InventoryTransactionChunkingStrategy,
 )

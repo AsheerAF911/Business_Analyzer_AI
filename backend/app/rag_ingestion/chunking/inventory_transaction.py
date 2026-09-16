@@ -3,7 +3,10 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any
 
-from app.ingestion.parsers.base import ParsedRecord
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.ingestion.parsers.base import ParsedRecord
 from app.rag_ingestion.models import Chunk, Document
 
 from .base import ChunkingStrategy

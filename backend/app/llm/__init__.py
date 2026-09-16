@@ -1,14 +1,20 @@
-from .base import (
-    LLMService,
-    LLMServiceError,
+from .models import (
+    LLMEvidence,
+    LLMRequest,
+    LLMResponse,
 )
-from .openrouter_service import (
-    OpenRouterLLMService,
+from .provider import (
+    LLMProvider,
+    LLMProviderError,
 )
+from .service import LLMService
 
 
 __all__ = [
+    "LLMEvidence",
+    "LLMRequest",
+    "LLMResponse",
+    "LLMProvider",
+    "LLMProviderError",
     "LLMService",
-    "LLMServiceError",
-    "OpenRouterLLMService",
 ]

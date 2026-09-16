@@ -1,0 +1,89 @@
+{
+  "dataset_name": "inventory_transactions_retrieval_baseline",
+  "description": "Small project-specific retrieval evaluation for Inventory_transactions.xlsx",
+  "cases": [
+    {
+      "id": "q1",
+      "question": "Which products were received under D1IN0818?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0818"
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Tell me about D1IN0820.",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0820"
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "Which transaction contains chilli powder?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0818"
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "What was received from TEAM 2?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0819"
+      ]
+    },
+    {
+      "id": "q5",
+      "question": "What was received from D1?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0818",
+        "D1IN0820"
+      ]
+    },
+    {
+      "id": "q6",
+      "question": "Which transaction occurred on 2026-05-01?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0818",
+        "D1IN0819",
+        "D1IN0820"
+      ]
+    },
+    {
+      "id": "q7",
+      "question": "Which transaction received the highest quantity?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0818",
+        "D1IN0819",
+        "D1IN0820"
+      ]
+    },
+    {
+      "id": "q8",
+      "question": "What is the total quantity received?",
+      "expectation": "relevant_transactions",
+      "expected_transaction_numbers": [
+        "D1IN0818",
+        "D1IN0819",
+        "D1IN0820"
+      ]
+    },
+    {
+      "id": "q9",
+      "question": "Which vendor has the highest inventory value?",
+      "expectation": "insufficient_evidence",
+      "expected_transaction_numbers": []
+    },
+    {
+      "id": "q10",
+      "question": "Why did profit decline?",
+      "expectation": "insufficient_evidence",
+      "expected_transaction_numbers": []
+    }
+  ]
+}

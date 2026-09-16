@@ -16,8 +16,11 @@ from app.rag_ingestion.vector_store import (
 )
 
 from app.llm import (
+    LLMProvider,
     LLMService,
-    OpenRouterLLMService,
+)
+from app.llm.providers import (
+    OpenRouterProvider,
 )
 
 from app.answering import AnswerService
@@ -52,17 +55,23 @@ def get_retrieval_service() -> RetrievalService:
         vector_store=get_qdrant_service(),
     )
 
-
+@lru_cache
+def get_answer_service() -> AnswerService:
+    return AnswerService(
+        retrieval_service=get_retrieval_service(),
+        llm_service=get_llm_service(),
+    )
 
 @lru_cache
-def get_llm_service() -> LLMService:
-    provider = os.getenv(
+def get_llm_provider() -> LLMProvider:
+
+    provider_name = os.getenv(
         "LLM_PROVIDER",
         "openrouter",
     ).strip().lower()
 
-    if provider == "openrouter":
-        return OpenRouterLLMService(
+    if provider_name == "openrouter":
+        return OpenRouterProvider(
             api_key=os.getenv(
                 "OPENROUTER_API_KEY",
                 "",
@@ -74,15 +83,13 @@ def get_llm_service() -> LLMService:
         )
 
     raise RuntimeError(
-        f"Unsupported LLM provider: {provider}"
+        "Unsupported LLM provider: "
+        f"{provider_name}"
     )
 
 
-
-
 @lru_cache
-def get_answer_service() -> AnswerService:
-    return AnswerService(
-        retrieval_service=get_retrieval_service(),
-        llm_service=get_llm_service(),
+def get_llm_service() -> LLMService:
+    return LLMService(
+        provider=get_llm_provider()
     )

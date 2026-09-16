@@ -3,7 +3,10 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from app.ingestion.parsers.base import ParsedRecord
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.ingestion.parsers.base import ParsedRecord
 
 from .models import Document
 

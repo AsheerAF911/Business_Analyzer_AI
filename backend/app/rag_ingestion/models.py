@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
-from app.ingestion.parsers.base import ParsedRecord
+if TYPE_CHECKING:
+    from app.ingestion.parsers.base import ParsedRecord
+
 
 
 @dataclass
