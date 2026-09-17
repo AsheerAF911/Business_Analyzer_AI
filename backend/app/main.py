@@ -5,7 +5,9 @@ from app.database import engine
 from app.models import Base
 import os
 from app.routes.ask import router as ask_router
-
+from app.routes.business_data import (
+    router as business_data_router,
+)
 
 app = FastAPI()
 
@@ -28,6 +30,10 @@ app.add_middleware(
 app.include_router(reports_router)
 
 app.include_router(ask_router)
+
+app.include_router(
+    business_data_router
+)
 
 
 @app.get("/")

@@ -25,6 +25,12 @@ from app.llm.providers import (
 
 from app.answering import AnswerService
 
+from fastapi import Depends
+from sqlalchemy.orm import Session
+
+from app.database import get_db
+from app.structured_data import StructuredDataService
+
 
 @lru_cache
 def get_embedding_service() -> EmbeddingService:
@@ -92,4 +98,11 @@ def get_llm_provider() -> LLMProvider:
 def get_llm_service() -> LLMService:
     return LLMService(
         provider=get_llm_provider()
+    )
+
+def get_structured_data_service(
+    db: Session = Depends(get_db),
+) -> StructuredDataService:
+    return StructuredDataService(
+        db=db,
     )
