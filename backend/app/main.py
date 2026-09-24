@@ -8,6 +8,8 @@ from app.routes.ask import router as ask_router
 from app.routes.business_data import (
     router as business_data_router,
 )
+from app.routes.business_context import router as business_context_router
+
 
 app = FastAPI()
 
@@ -34,6 +36,8 @@ app.include_router(ask_router)
 app.include_router(
     business_data_router
 )
+
+app.include_router(business_context_router)
 
 
 @app.get("/")

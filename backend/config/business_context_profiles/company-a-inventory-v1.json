@@ -1,0 +1,56 @@
+{
+  "profile_id": "company-a-inventory-v1",
+  "scope": {
+    "company_context": "company-a",
+    "report_type": "Inventory",
+    "source_format_id": "inventory-format-a"
+  },
+  "description": "Company A inventory layout",
+  "status": "IN_REVIEW",
+  "notes": "Swagger API test",
+  "report_profile": {
+    "source_file": "sample.xlsx",
+    "report_type": "Inventory",
+    "sheets": [
+      "Sheet1"
+    ],
+    "record_count": 1,
+    "column_count": 1,
+    "profiled_at": null,
+    "columns": [
+      {
+        "source_column_name": "VENDOR NAME",
+        "inferred_data_type": "string",
+        "example_values": [
+          "D1"
+        ],
+        "null_count": 0,
+        "total_count": 1,
+        "null_percentage": 0.0,
+        "unique_value_count": 1,
+        "possible_semantic_meanings": [
+          "supplier",
+          "receiving entity"
+        ],
+        "possible_canonical_concepts": [
+          "SUPPLIER",
+          "DESTINATION_ENTITY"
+        ],
+        "ambiguity_status": "AMBIGUOUS",
+        "profiling_notes": "Needs implementor review."
+      }
+    ],
+    "warnings": [
+      "1 column(s) require semantic review."
+    ]
+  },
+  "field_mappings": [
+    {
+      "source_field": "VENDOR NAME",
+      "business_meaning": "Receiving Entity",
+      "canonical_role": "DESTINATION_ENTITY",
+      "confirmation_status": "CONFIRMED",
+      "implementor_note": "In this company's inventory flow, VENDOR NAME represents the receiving entity."
+    }
+  ]
+}

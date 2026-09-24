@@ -1,0 +1,22 @@
+{
+  "profile_id": "string",
+  "scope": {
+    "company_context": "string",
+    "report_type": "string",
+    "source_format_id": "string"
+  },
+  "description": "string",
+  "status": "DRAFT",
+  "notes": "string",
+  "report_profile": {
+    "source_file": "",
+    "report_type": null,
+    "sheets": [],
+    "record_count": 0,
+    "column_count": 0,
+    "profiled_at": null,
+    "columns": [],
+    "warnings": []
+  },
+  "field_mappings": []
+}
