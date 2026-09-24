@@ -18,7 +18,7 @@ class FakeSentenceTransformer:
         FakeSentenceTransformer.load_count += 1
         self.model_name = model_name
 
-    def get_sentence_embedding_dimension(self):
+    def get_embedding_dimension(self):
         return 1024
 
     def encode(
